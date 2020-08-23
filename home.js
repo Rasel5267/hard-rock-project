@@ -13,16 +13,21 @@ async function searchSongs(searchTerm){
 
 //Show Song and Artist
 function showData(data){
-    result.innerHTML =`
-    <ul class = 'songs'>
+    result.innerHTML =`  
     ${data.data.map(song => `
-    <li>
-    <span><strong>${song.artist.name}</strong> - ${song.title}</span>
-    <button style="color:white;background:green;" class ="btn" data-artist="${song.artist.name}" data-songTitle="${song.title}">Get Lyrics</button>
-    </li>`)
+    <div class = 'single-result row align-items-center my-3 p-3'>
+        <div class="col-md-8 text-md-left ">
+            <h3 class="lyrics-name">${song.artist.name}</h3>
+            <p class="author lead">Title: ${song.title}</p>
+        </div>
+        <div class="col-md-4 text-md-right text-center">
+        <button class ="btn btn-success" data-artist="${song.artist.name}" data-songTitle="${song.title}">Get Lyrics</button>
+        </div>
+    </div>
+    `)
+    .slice(0,10)
     .join('')
 }
-    </ul>
     `;
 }
 //get lyrics for song
@@ -53,3 +58,6 @@ searchBtn.addEventListener('click', e =>{
     }
     
 })
+
+
+
